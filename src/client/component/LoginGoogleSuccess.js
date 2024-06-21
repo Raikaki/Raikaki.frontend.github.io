@@ -51,7 +51,9 @@ const Login = () => {
                     } else {
                         console.error('Error after login:', response.data);
                     }
-                });
+                }).catch((e)=>{
+                    console.log("loi: "+e)
+            })
         } catch (error) {
             console.error('Error after login:', error);
         }

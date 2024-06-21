@@ -15,7 +15,7 @@ import ProductItem from "./page/ProductItem";
 import AnimePage from "./component/Index";
 import { CategoriesPage } from "./page/Categorie";
 import { HeaderPage } from "./component/Header";
-import Footer from "./page/Footer.js"
+// import Footer from "./page/Footer.js"
 import ServicePack from "./component/ServicePack";
 import MovieWatching from "./page/MovieWatching";
 import LoginGoogle from "./component/LoginGoogleSuccess";
@@ -65,7 +65,7 @@ function IndexApp() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/changePassword" element={<ChangePassword />} />
       </Routes>
-      <Footer/>
+      {/*<Footer/>*/}
 
     </Router>
   );
