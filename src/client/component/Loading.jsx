@@ -1,5 +1,5 @@
 import React from "react";
-import loadingImage from "../img/loading.gif";
+import loadingImage from "../../img/loading.gif";
 import Modal from "react-modal";
 export const Loading = ({ open = false }) => {
   const modalStyle = {

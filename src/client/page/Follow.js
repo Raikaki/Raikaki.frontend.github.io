@@ -2,14 +2,16 @@ import React, { useState, useEffect } from "react";
 
 import { AiOutlineMore } from "react-icons/ai";
 import MovieFollowItem from "./MovieFollowItem.js"; // Import MovieComment component
-import "../css/follow.css";
+import "../../css/follow.css";
 import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
-import { API_GET_PATHS } from "../service/Constant.js";
+import { API_GET_PATHS } from "../../service/Constant.js";
+import { useTranslation, Trans } from "react-i18next";
 
 function Follow() {
   const [listmovie, setListMovie] = useState([]); // Ensure initial state is an array
   const [error, setError] = useState(null); // State to handle errors
+  const { t } = useTranslation();
 
   var token = Cookies.get("jwt_token");
 
@@ -33,25 +35,27 @@ function Follow() {
     fetchMovies();
   }, []);
   if (listmovie.length == 0) {
-    return <div>You have not followed any movies yet.</div>;
+    return <div>{t("follow.emptylist")}</div>;
   }
   if (error) {
-    return <div>Error: {error}</div>;
+    return <div>{t("follow.error")}: {error}</div>;
   }
   if (!user) {
-    return <div>Please log in to see your favorite movies.</div>;
+    return <div>{t("follow.login_error")}</div>;
   }
   return (
     <section className="follow_page">
       <br></br>
-      <h2 className="title_movie_follow">DANH SÁCH PHIM YÊU THÍCH</h2>
+      <h2  style={{"text-transform": "uppercase"}} className="title_movie_follow">               
+       {t("follow.favoritemovielist")}
+      </h2>
       <br></br>
       <div className="element">
         <div className="title_element row">
-          <span className="image_movie col-md-3">Hình</span>
-          <span className="title_movie col-md-3">Tên phim</span>
-          <span className="movie_time col-md-3">Thời lượng</span>
-          <span className="movie_viewer col-md-3">Lượt xem</span>
+          <span className="image_movie col-md-3"> {t("follow.image")}</span>
+          <span className="title_movie col-md-3"> {t("follow.moviename")}</span>
+          <span className="movie_time col-md-3">{t("follow.time")}</span>
+          <span className="movie_viewer col-md-3">{t("follow.view")}</span>
           <span className="movie_icon col-md-3">
             <AiOutlineMore />
           </span>

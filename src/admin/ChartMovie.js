@@ -2,20 +2,33 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
+import { API_GET_PATHS } from "./service/Constant";
+import Cookies from "js-cookie";
 
 const ChartMovie = () => {
   const [topViewMoviesMonth, setTopViewMoviesMonth] = useState([]);
   const [topViewMoviesYear, setTopViewMoviesYear] = useState([]);
+  const token=Cookies.get("jwt_token");
 
   useEffect(() => {
     const fetchChartData = async () => {
       try {
         // Fetch data for the year chart
-        const yearResponse = await axios.get("http://localhost:8080/admin/movies/viewed/year/top5");
+        const yearResponse = await axios.get(API_GET_PATHS.GET_TOP5_VIEWED_YEAR,{
+          headers: {
+            'Authorization': `Bearer ${token}`
+        }
+        });
         setTopViewMoviesYear(yearResponse.data);
 
         // Fetch data for the month chart
-        const monthResponse = await axios.get("http://localhost:8080/admin/movies/viewed/month/top5");
+        const monthResponse = await axios.get(API_GET_PATHS.GET_TOP5_VIEWED_MONTH,{
+          headers: {
+            'Authorization': `Bearer ${token}`
+        }
+        });
+        console.log("sss")
+        console.log(monthResponse.data)
         setTopViewMoviesMonth(monthResponse.data);
 
       } catch (error) {
@@ -30,6 +43,7 @@ const ChartMovie = () => {
     return data.map((movie) => ({
       name: movie.name,
       y: movie.views.length
+
     }));
   };
 

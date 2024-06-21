@@ -17,7 +17,7 @@ const Topview = () => {
 
   const loadTopViewMovies = async (type) => {
     try {
-      const response = await axios.get(`http://localhost:8080/movie/top-view?type=${type}`);
+      const response = await axios.get(`https://backend-w87n.onrender.com/movie/top-view?type=${type}`);
       setMovies(response.data.topMovies);
       setActiveFilter(type); // Set active filter
       console.log(response);

@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link  } from "react-router-dom";
 import axios from "axios";
 import { API_GET_PATHS, API_PATCH_PATHS } from "../service/Constant";
+import Cookies from "js-cookie";
 
 const EditUser = () => {
+  const token = Cookies.get("jwt_token");
+
   const [avatar, setAvatar] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
   const { id } = useParams();
@@ -18,16 +21,32 @@ const EditUser = () => {
   const [fullName, setFullName] = useState("");
   const [Email, setEmail] = useState("");
   const [Phone, setPhone] = useState("");
-
+  const [isValidEmail, setIsValidEmail] = useState(true);
+  const [isValidPhone, setIsValidPhone] = useState(true);
   const handleChangeFullName = (e) => {
     setFullName(e.target.value);
   };
   const handleChangeEmail = (e) => {
-    setEmail(e.target.value);
+    const emailValue = e.target.value;
+    setEmail(emailValue);
+    setIsValidEmail(validateEmail(emailValue));
   };
+  const validateEmail = (email) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    console.log(regex.test(email));
+    return regex.test(email);
+  };
+
   const handleChangePhone = (e) => {
-    setPhone(e.target.value);
+    const phoneValue = e.target.value;
+    setPhone(phoneValue);
+    setIsValidPhone(validatePhone(phoneValue));
   };
+  const validatePhone = (phone) => {
+    const regex = /^\d{10}$/;
+    return regex.test(phone);
+  };
+
   useEffect(() => {
     fetchUserData();
     console.log(account.roleIdList);
@@ -58,7 +77,6 @@ const EditUser = () => {
     }
   };
 
-  const backToUserList = () => {};
   const submitEdit = async () => {
     const user = {
       name: document.getElementById("fname").value,
@@ -77,9 +95,9 @@ const EditUser = () => {
 
     const response = await axios
       .patch(API_PATCH_PATHS.EDIT_USER + `${id}`, formData, {
-        // headers: {
-        //   "Content-Type": "multipart/form-data",
-        // },
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       })
       .then((response) => {
         setIsUploading(false);
@@ -150,11 +168,7 @@ const EditUser = () => {
                       </div>
                     </div>
                     <div className="iq-card-body">
-                      <div
-                      // method="post"
-                      // enctype="multipart/form-data"
-                      // action=""
-                      >
+                      <div>
                         <div className="form-group row align-items-center">
                           <div className="col-md-12 add-img-user">
                             <div className="profile-img-edit">
@@ -200,6 +214,11 @@ const EditUser = () => {
                               name="email"
                               required="required"
                             />
+                            {!isValidEmail && (
+                              <div className="text-danger">
+                                Email không đúng định dạng.
+                              </div>
+                            )}
                           </div>
                           <div className="form-group col-sm-6">
                             <label>Loại tài khoản :</label>
@@ -225,6 +244,11 @@ const EditUser = () => {
                               name="phoneNumber"
                               required="required"
                             />
+                            {!isValidPhone && (
+                              <div className="text-danger">
+                                Số điện thoại không đúng định dạng.
+                              </div>
+                            )}
                           </div>
                         </div>
                         <div id="error" style={{ color: "red" }}></div>
@@ -232,15 +256,17 @@ const EditUser = () => {
                           type="submit"
                           className="btn btn-primary mr-2"
                           onClick={submitEdit}
+                          disabled={!isValidEmail | !isValidPhone}
                         >
                           Xác nhận
                         </button>
-                        <button
-                          type="reset"
-                          className="btn iq-bg-danger"
-                          onClick={backToUserList()}
-                        >
-                          Hủy
+                        <button type="reset" className="btn iq-bg-danger">
+                          <Link
+                            to="/admin/UserList"
+                            className=""
+                          >
+                            Hủy
+                          </Link>{" "}
                         </button>
                       </div>
                     </div>

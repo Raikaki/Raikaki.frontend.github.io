@@ -15,6 +15,9 @@ const AddUserForm = () => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [isValidEmail, setIsValidEmail] = useState(true);
+  const [isValidPhone, setIsValidPhone] = useState(true);
+
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -31,10 +34,26 @@ const AddUserForm = () => {
     setFullName(e.target.value);
   };
   const handlePhoneChange = (e) => {
-    setPhone(e.target.value);
+    const phoneValue=e.target.value;
+    setPhone(phoneValue);
+    setIsValidPhone(validatePhone(phoneValue));
+  };
+  const validatePhone = (phone) => {
+
+    const regex = /^\d{10}$/;
+    return regex.test(phone);
   };
   const handleEmailChange = (e) => {
-    setEmail(e.target.value);
+    const emailValue=e.target.value;
+    setEmail(emailValue);
+    setIsValidEmail(validateEmail(emailValue));
+
+  };
+  const validateEmail = (email) => {
+    // Regular expression for basic email validation
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    console.log( regex.test(email))
+    return regex.test(email);
   };
   const handleUserNameChange = (e) => {
     setUsername(e.target.value);
@@ -185,6 +204,8 @@ const AddUserForm = () => {
                         placeholder="Phone Number"
                         onChange={handlePhoneChange}
                       />
+                            {!isValidPhone && <div className="text-danger">Số điện thoại không đúng định dạng.</div>}
+
                     </div>
                     <div className="form-group col-md-6">
                       <label htmlFor="email">Email:</label>
@@ -196,6 +217,8 @@ const AddUserForm = () => {
                         placeholder="Email"
                         onChange={handleEmailChange}
                       />
+                       {!isValidEmail && <div className="text-danger">Email không đúng định dạng.</div>}
+
                     </div>
                   </div>
                   <hr />
@@ -228,6 +251,8 @@ const AddUserForm = () => {
                     type="submit"
                     className="btn btn-primary"
                     onClick={handleClick}
+                    disabled={!isValidEmail|!isValidPhone}
+
                   >
                     Xác nhận
                   </button>

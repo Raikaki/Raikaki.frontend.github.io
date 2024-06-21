@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from "react";
-import {movieViewed} from "../service/MovieServices";
+import {movieViewed} from "../../service/MovieServices";
 import {AiOutlineMore} from "react-icons/ai";
 import MovieFollowItem from "./MovieFollowItem";
-import "../css/follow.css";
+import "../../css/follow.css";
 import Cookies from "js-cookie";
 import {jwtDecode} from "jwt-decode";
 import {Link} from "react-router-dom";
@@ -40,7 +40,7 @@ function Viewed() {
     };
     const fetchRating = async (movieId) => {
         try {
-            const response = await axios.get(`http://localhost:8080/rates/average/${movieId}`);
+            const response = await axios.get(`https://backend-w87n.onrender.com/rates/average/${movieId}`);
             console.log(response)
             return response.data; // Assuming the rating is in response.data.rating
         } catch (error) {

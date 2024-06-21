@@ -1,4 +1,4 @@
-export const BASE_URL = "http://localhost:8080";
+export const BASE_URL = "https://backend-w87n.onrender.com";
 
 export const API_GET_PATHS = {
   GET_LIST_MOVIE_FOLLOWED_API_ADMIN_URL: `${BASE_URL}/movie/findAll?userId=`,

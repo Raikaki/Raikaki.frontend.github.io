@@ -38,7 +38,7 @@ const PayPalButton = ({ amount, userId, serviceId }) => {
         }
       );
       const response = await axiosInstance.post(
-        "http://localhost:8080/payment/create-payment",
+        "https://backend-w87n.onrender.com/payment/create-payment",
         {
           amount: convertedAmount,
           currency: "USD",

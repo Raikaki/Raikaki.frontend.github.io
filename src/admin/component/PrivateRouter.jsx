@@ -7,18 +7,18 @@ const PrivateRoute = ({ roles }) => {
   const token = Cookies.get("jwt_token");
   const location = useLocation();
   if (!token) {
-    window.location.href = "http://localhost:3000/NotAuthorized";
+    window.location.href = "https://animewebnew.netlify.app/NotAuthorized";
   }
   try {
     const decodedToken = jwtDecode(token);
     const userRoles = decodedToken.scope.split(" ");
     if (roles && !roles.some((role) => userRoles.includes(role))) {
-      window.location.href = "http://localhost:3000/NotAuthorized";
+      window.location.href = "https://animewebnew.netlify.app/NotAuthorized";
       return null;
     }
     return <Outlet />;
   } catch (error) {
-    window.location.href = "http://localhost:3000/NotAuthorized";
+    window.location.href = "https://animewebnew.netlify.app/NotAuthorized";
   }
 };
 

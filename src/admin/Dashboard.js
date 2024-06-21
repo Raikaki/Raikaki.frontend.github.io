@@ -5,6 +5,7 @@ import ChartMovie from "./ChartMovie";
 import CostChart from "./CostChart";
 import { API_GET_PATHS } from "./service/Constant";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 const Dashboard = () => {
   const [data, setData] = useState({
@@ -17,6 +18,8 @@ const Dashboard = () => {
     topNotPurchasedList: [],
     profit: 0,
   });
+ const token=Cookies.get("jwt_token");
+
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
 
   const formatDate = (date) => {
@@ -32,8 +35,13 @@ const Dashboard = () => {
   };
 
   const FetchCustomer = () => {
+
     axios
-      .get(API_GET_PATHS.GET_LIST_USER_BOUGHT_SERVICEPACK)
+      .get(API_GET_PATHS.GET_LIST_USER_BOUGHT_SERVICEPACK,{
+        headers: {
+          'Authorization': `Bearer ${token}`
+      }
+      })
       .then((response) => {
         setData((prevData) => ({
           ...prevData,
@@ -44,8 +52,13 @@ const Dashboard = () => {
   };
   const FetchservicePack = () => {
     axios
-      .get(API_GET_PATHS.GET_ALL_SERVICEPACK)
+      .get(API_GET_PATHS.GET_ALL_SERVICEPACK,{
+        headers: {
+          'Authorization': `Bearer ${token}`
+      }
+      })
       .then((response) => {
+
         setData((prevData) => ({
           ...prevData,
           totalMoviePurchase: response.data.length,
@@ -55,11 +68,16 @@ const Dashboard = () => {
   };
   const FetchMovie = () => {
     axios
-      .get(API_GET_PATHS.GET_ALL_MOVIE)
+      .get(API_GET_PATHS.GET_ALL_MOVIE,{
+        headers: {
+          'Authorization': `Bearer ${token}`
+      }
+      })
       .then((response) => {
+
         setData((prevData) => ({
           ...prevData,
-          totalMovie: response.data.totalMovies,
+          totalMovie: response.data.length,
         }));
       })
       .catch((error) => console.error("Error fetching user data:", error));
@@ -67,7 +85,11 @@ const Dashboard = () => {
 
   const FetchUserLocked = () => {
     axios
-      .get(API_GET_PATHS.GET_LIST_USER_LOCKED)
+      .get(API_GET_PATHS.GET_LIST_USER_LOCKED,{
+        headers: {
+          'Authorization': `Bearer ${token}`
+      }
+      })
       .then((response) => {
         setData((prevData) => ({
           ...prevData,
@@ -78,7 +100,11 @@ const Dashboard = () => {
   };
   const FetchRevenue = () => {
     axios
-      .get(API_GET_PATHS.GET_REVENUE)
+      .get(API_GET_PATHS.GET_REVENUE,{
+        headers: {
+          'Authorization': `Bearer ${token}`
+      }
+      })
       .then((response) => {
         setData((prevData) => ({
           ...prevData,
@@ -90,7 +116,11 @@ const Dashboard = () => {
 
   const FetchTop2ServicePackBoughtByMonth = () => {
     axios
-      .get(API_GET_PATHS.GET_TOP2_SERVICE_PACK_BOUGHT_MONTH)
+      .get(API_GET_PATHS.GET_TOP2_SERVICE_PACK_BOUGHT_MONTH,{
+        headers: {
+          'Authorization': `Bearer ${token}`
+      }
+      })
       .then((response) => {
         setData((prevData) => ({
           ...prevData,
@@ -102,7 +132,11 @@ const Dashboard = () => {
 
   const FetchTop2ServicePackBoughtByYear = () => {
     axios
-      .get(API_GET_PATHS.GET_TOP2_SERVICE_PACK_BOUGHT_YEAR)
+      .get(API_GET_PATHS.GET_TOP2_SERVICE_PACK_BOUGHT_YEAR,{
+        headers: {
+          'Authorization': `Bearer ${token}`
+      }
+      })
       .then((response) => {
         setData((prevData) => ({
           ...prevData,
@@ -112,13 +146,13 @@ const Dashboard = () => {
       .catch((error) => console.error("Error fetching user data:", error));
   };
   useEffect(() => {
-    FetchCustomer();
-    FetchservicePack();
-    FetchMovie();
-    FetchUserLocked();
-    FetchTop2ServicePackBoughtByMonth();
-    FetchTop2ServicePackBoughtByYear();
-    FetchRevenue();
+     FetchCustomer();
+     FetchservicePack();
+      FetchMovie();
+     FetchUserLocked();
+     FetchTop2ServicePackBoughtByMonth();
+     FetchTop2ServicePackBoughtByYear();
+     FetchRevenue();
     const interval = setInterval(() => {
       setCurrentDateTime(new Date()); // Cập nhật thời gian hiện tại sau mỗi 1 giây
     }, 1000);
@@ -150,14 +184,14 @@ const Dashboard = () => {
 const LeftPanel = ({ data }) => {
   return (
     <div className="col-md-12 col-lg-6">
-      <div className="row">
+     <div className="row">
         <StatisticsCard
           icon="bxs-user-account"
           title="Tổng khách hàng"
           value={`${data.totalAccount} khách hàng`}
           info="Tổng số khách hàng được quản lý."
         />
-        <StatisticsCard
+         <StatisticsCard
           icon="bxs-data"
           title="Tổng số phim"
           value={`${data.totalMovie} phim`}
@@ -174,7 +208,7 @@ const LeftPanel = ({ data }) => {
           title="Tài khoản bị khóa"
           value={`${data.blockAccount} tài khoản`}
           info="Tổng số tài khoản hiện tại đang bị khóa."
-        />
+        /> 
         <DataTable
           title="Các gói được mua nhiều nhất trong tháng"
           data={data.topPurchasedList}
@@ -183,7 +217,7 @@ const LeftPanel = ({ data }) => {
           title="Các gói được mua nhiều nhất trong trong năm"
           data={data.topPurchasedListYear}
         />
-      </div>
+      </div> 
     </div>
   );
 };
@@ -243,7 +277,7 @@ const ProfitStatistics = ({ profit }) => {
     <div className="col-md-9">
       <div className="tile">
         <h3 className="tile-title">Thống kê doanh thu của năm</h3>
-        <CostChart />
+         <CostChart />
         <div>
         Tổng doanh thu thu được trong năm :
           <h5>{new Intl.NumberFormat().format(profit)} VND</h5>
@@ -276,6 +310,7 @@ const RightPanel = ({ data }) => {
         </div>
       </div>
     </div>
+ 
   );
 };
 

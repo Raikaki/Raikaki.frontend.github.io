@@ -1,7 +1,7 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
-const AUTH_API_BASE_URL = "http://localhost:8080/auth";
+const AUTH_API_BASE_URL = "https://backend-w87n.onrender.com/auth";
 
 const axiosInstance = axios.create({});
 

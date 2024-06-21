@@ -33,7 +33,7 @@ const ExecutePaymentComponent = () => {
           }
         );
         const response = await axiosInstance.get(
-          "http://localhost:8080/payment/execute",
+          "https://backend-w87n.onrender.com/payment/execute",
           {
             params: {
               paymentId: paymentId,

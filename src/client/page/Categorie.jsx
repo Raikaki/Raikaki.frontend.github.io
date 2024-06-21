@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Carousel from "../../src/component/Carousel";
+import Carousel from "../component/Carousel";
 import Topview from "../component/Topview";
 import { useParams } from "react-router-dom";
-import { getMoviesByGenre } from "../service/CategoryServices";
+import { getMoviesByGenre } from "../../service/CategoryServices";
 import axios from "axios";
 
 export const CategoriesPage = () => {
@@ -39,7 +39,7 @@ export const CategoriesPage = () => {
   }, [idGenre, currentPage, sortBy, ascending]);
   const fetchRating = (movieId) => {
     return axios
-      .get(`http://localhost:8080/rates/average/${movieId}`)
+      .get(`https://backend-w87n.onrender.com/rates/average/${movieId}`)
       .then((response) => {
         return response.data;
       })

@@ -17,7 +17,7 @@ import {
   deleteChapter,
 } from "../../service/MovieServices";
 import { parse } from "date-fns";
-import { Loading } from "../../component/Loading";
+import { Loading } from "../../client/component/Loading";
 import ProgressBar from "@ramonak/react-progress-bar";
 Modal.setAppElement("#root");
 

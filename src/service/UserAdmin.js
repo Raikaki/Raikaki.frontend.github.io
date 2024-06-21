@@ -3,7 +3,7 @@ import Cookies from "js-cookie";
 import { refreshToken } from "./AuthServices";
 import { jwtDecode } from "jwt-decode";
 
-const USER_API_ADMIN_URL = "http://localhost:8080/admin/user";
+const USER_API_ADMIN_URL = "https://backend-w87n.onrender.com/admin/user";
 
 const axiosInstance = axios.create({});
 axiosInstance.interceptors.request.use(

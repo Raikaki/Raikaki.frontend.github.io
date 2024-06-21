@@ -7,7 +7,7 @@ import Modal from "react-modal";
 import Swal from "sweetalert2";
 import { adminListMovie, deleteMovie } from "../../service/MovieServices";
 import { Link } from "react-router-dom";
-import { Loading } from "../../component/Loading";
+import { Loading } from "../../client/component/Loading";
 import TextField from "@mui/material/TextField";
 
 Modal.setAppElement("#root");

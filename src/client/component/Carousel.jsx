@@ -29,7 +29,7 @@ const Slider = () => {
   useEffect(() => {
     const loadTopViewMovies = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/movie/top-view?type=year"); // Replace 'all' with the appropriate type if needed
+        const response = await axios.get("https://backend-w87n.onrender.com/movie/top-view?type=year"); // Replace 'all' with the appropriate type if needed
         setMovies(response.data.topMovies);
       } catch (error) {
         console.error('Error fetching top view movies:', error);

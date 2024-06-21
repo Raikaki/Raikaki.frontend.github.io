@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "../css/ForgotPassword.css";
+import "../../css/ForgotPassword.css";
 import Swal from "sweetalert2"; // Ensure you have the CSS file
-import { Loading } from "../component/Loading";
+import { Loading } from "./Loading";
 function ForgotPassword() {
   const [isUploading, setIsUploading] = useState(false);
   const [email, setEmail] = useState("");
@@ -13,7 +13,7 @@ function ForgotPassword() {
     const data = { email };
     setIsUploading(true);
     axios
-      .post("http://localhost:8080/auth/forget-password", data)
+      .post("https://backend-w87n.onrender.com/auth/forget-password", data)
       .then((response) => {
         setIsUploading(false);
         setSubmitted(true);

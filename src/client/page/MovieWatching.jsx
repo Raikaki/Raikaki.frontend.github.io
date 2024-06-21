@@ -3,7 +3,7 @@ import {useParams} from "react-router-dom";
 import {useEffect} from "react";
 import {FaFastForward} from "react-icons/fa";
 import {createRoot} from "react-dom/client";
-import {findMovieWatching, updateView} from "../service/MovieServices";
+import {findMovieWatching, updateView} from "../../service/MovieServices";
 import {usePlyr} from "plyr-react";
 import "plyr-react/plyr.css";
 import {Link} from "react-router-dom";

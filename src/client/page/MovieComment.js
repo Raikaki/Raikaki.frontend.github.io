@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import userDefaultImage from "../img/user_default.png";
+import userDefaultImage from "../../img/user_default.png";
 import { DeleteFilled } from "@ant-design/icons";
 import { jwtDecode } from "jwt-decode";
 import { useTranslation } from "react-i18next";
@@ -23,7 +23,7 @@ function MovieComment() {
 
   const fetchComments = () => {
     axios
-      .get(`http://localhost:8080/comment`)
+      .get(`https://backend-w87n.onrender.com/comment`)
       .then((response) => {
         setComments(response.data);
         setRendered(response.data.length);
@@ -41,7 +41,7 @@ function MovieComment() {
   const fetchUserDetailsForComments = (comments) => {
     const commentPromises = comments.map((comment) => {
       return axios
-        .get(`http://localhost:8080/account/view/${comment.userCommentId}`)
+        .get(`https://backend-w87n.onrender.com/account/view/${comment.userCommentId}`)
         .then((response) => response.data)
         .catch((error) => {
           console.error("Error fetching user details:", error);

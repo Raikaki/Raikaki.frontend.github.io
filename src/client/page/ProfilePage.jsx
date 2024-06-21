@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
-import { API_GET_PATHS, API_PATCH_PATHS } from "../service/Constant";
+import { API_GET_PATHS, API_PATCH_PATHS } from "../../service/Constant";
 import Swal from "sweetalert2";
+import { refreshToken } from "../../service/AuthServices";
 
 function ProfilePage() {
   const [isUploading, setIsUploading] = useState(false);
@@ -21,6 +22,7 @@ function ProfilePage() {
   const [imageSrc, setImageSrc] = useState("");
   const [avatar, setAvatar] = useState(null);
   const user = typeof token === "undefined" ? null : jwtDecode(token);
+
   useEffect(() => {
     fetchData();
     FetchService();
@@ -32,9 +34,9 @@ function ProfilePage() {
           API_GET_PATHS.GET_PROFILE + `${user.idUser}`
         );
         const data = response.data;
-        console.log(response.data)
+        console.log(response.data);
         setAccount(data);
-        console.log(data.avatarPicture)
+        console.log(data.avatarPicture);
         setImageSrc(data.avatarPicture);
         setUsername(data.userName);
         setFullName(data.fullName);
@@ -145,21 +147,20 @@ function ProfilePage() {
 
       setIsUploading(true);
 
-      const response = await axios.patch(
-        API_PATCH_PATHS.UPDATE_PROFILE,
-        formData
-      ).then((response=>{
-        setIsUploading(false);
-        Swal.fire({
-          title: "Thành công",
-          text: "Chỉnh sửa thành công!",
-          icon: "success",
-          timer: 2000,
-          showConfirmButton: false,
-        });
-      }));
+      const response = await axios
+        .patch(API_PATCH_PATHS.UPDATE_PROFILE, formData)
+        .then((response) => {
+          setIsUploading(false);
+          Swal.fire({
+            title: "Thành công",
+            text: "Chỉnh sửa thành công!",
+            icon: "success",
+            timer: 2000,
+            showConfirmButton: false,
+          });
+          refreshToken(token);
 
-      
+        });
     } catch (error) {
       setIsUploading(false);
       Swal.fire({
@@ -191,12 +192,12 @@ function ProfilePage() {
             >
               <ol className="breadcrumb mb-0">
                 <li className="breadcrumb-item">
-                  <a className="text-dark" href="#">
+                  <a className="text-dark" href="src/client/page#">
                     Home
                   </a>
                 </li>
                 <li className="breadcrumb-item">
-                  <a className="text-dark" href="#">
+                  <a className="text-dark" href="src/client/page#">
                     User
                   </a>
                 </li>

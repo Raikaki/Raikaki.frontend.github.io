@@ -5,7 +5,7 @@ function ProductItem(props) {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:8080/movie/index')
+    fetch('https://backend-w87n.onrender.com/movie/index')
         .then(response => response.json()) // Parse response data to JSON
         .then(data => {
           console.log('Data:', data);

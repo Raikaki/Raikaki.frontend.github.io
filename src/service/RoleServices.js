@@ -2,7 +2,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { refreshToken } from "./AuthServices";
 import { jwtDecode } from "jwt-decode";
-const ROLE_API_BASE_URL = "http://localhost:8080/admin/roles";
+const ROLE_API_BASE_URL = "https://backend-w87n.onrender.com/admin/roles";
 
 const axiosInstance = axios.create({});
 axiosInstance.interceptors.request.use(

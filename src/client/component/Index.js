@@ -22,7 +22,7 @@ function AnimePage() {
 
     const fetchMovies = async () => {
         try {
-            const response = await axios.get(`http://localhost:8080/movie/index?page=${currentPage - 1}&size=${pageSize}&sortBy=${sortBy}&ascending=${ascending}`);
+            const response = await axios.get(`https://backend-w87n.onrender.com/movie/index?page=${currentPage - 1}&size=${pageSize}&sortBy=${sortBy}&ascending=${ascending}`);
             const responseData = response.data;
             setMovies(responseData.movies);
             setTotalPages(Math.ceil(responseData.totalMovies / pageSize));
@@ -42,7 +42,7 @@ function AnimePage() {
 
     const fetchRating = async (movieId) => {
         try {
-            const response = await axios.get(`http://localhost:8080/rates/average/${movieId}`);
+            const response = await axios.get(`https://backend-w87n.onrender.com/rates/average/${movieId}`);
             console.log(response)
             return response.data; // Assuming the rating is in response.data.rating
         } catch (error) {

@@ -1,5 +1,5 @@
 import React from "react";
-import error from "../img/error.png";
+import error from "../../img/error.png";
 export const NotAuthorized = () => {
   return (
     <div

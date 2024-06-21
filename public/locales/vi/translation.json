@@ -43,7 +43,10 @@
   },
   "header": {
     "account": "Quản lý tài khoản",
-    "follow": "Phim đang theo dõi"
+    "follow": "Phim đang theo dõi",
+    "Gotodashboard":"Đi đến bảng điều khiển",
+    "aboutus":"Giới thiệu"
+
   },
   "content": {
     "addcommnent":"Thêm bình luận mới",
@@ -144,4 +147,23 @@
   "Romantic": "Lãng mạn",
   "viewall": "Xem tất cả"
   }
+  ,"follow":{
+    "favoritemovielist":"danh sách phim yêu thích",
+    "image":"Hình",
+    "moviename":"Tên phim",
+    "time":"Thời lượng",
+    "view":"Lượt xem",
+    "emptylist":"Bạn chưa theo dõi bất kì bộ phim nào.",
+    "Error": "Lỗi",
+    "login_error":"Vui lòng đăng nhập"
+
+ },"changpass":{
+  "changepassword":"Đổi mật khẩu",
+   "old_password":"Mật khẩu hiện tại",
+   "new_password":"Mật khẩu mới",
+   "password_confirmation":"Mật khẩu mới",
+   "username":"Tên tài khoản",
+   "email":"Email",
+   "fullname":"Họ và tên"
+ }
 }

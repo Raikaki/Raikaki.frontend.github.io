@@ -43,7 +43,10 @@
   },
   "header": {
     "account": "Account Management",
-    "follow": "Follow"
+    "follow": "Follow",
+    "Gotodashboard":"Go to dashboard",
+    "aboutus":"About us"
+
   },
   "content": {
     "addcommnent":"Add new comment",
@@ -145,5 +148,26 @@
   "Horror": "Horror",
   "Romantic": "Romantic",
   "viewall": "View All"
+  }
+  ,"follow":{
+  "favoritemovielist":"favorite movie list",
+  "image":"Image",
+  "moviename":"Movie Name",
+  "time":"Time",
+  "view":"View",
+  "emptylist":"You have not followed any movies yet.",
+  "Error": "Error",
+  "login_error":"Please log in to see your favorite movies."
+  },"changpass":{
+    "changepassword":"Change Password",
+    "old_password":"Old password",
+    "new_password":"New password",
+
+    "password_confirmation":"Password confirmation",
+    "username":"User name",
+    "email":"Email",
+    "fullname":"Full name"
+
+
   }
 }

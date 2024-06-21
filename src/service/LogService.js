@@ -1,6 +1,6 @@
 
 import axios from 'axios';
-const MOVIE_API_ADMIN_URL = "http://localhost:8080/admin/logs";
+const MOVIE_API_ADMIN_URL = "https://backend-w87n.onrender.com/admin/logs";
 export async function fetchLogs() {
     const response = await axios.get(MOVIE_API_ADMIN_URL);
     return response.data;

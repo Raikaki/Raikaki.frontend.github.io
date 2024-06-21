@@ -3,8 +3,8 @@ import Cookies from "js-cookie";
 import { refreshToken } from "./AuthServices";
 import { jwtDecode } from "jwt-decode";
 
-const GENRE_API_BASE_URL = "http://localhost:8080/genre";
-const GENRE_API_ADMIN_URL = "http://localhost:8080/admin/genres";
+const GENRE_API_BASE_URL = "https://backend-w87n.onrender.com/genre";
+const GENRE_API_ADMIN_URL = "https://backend-w87n.onrender.com/admin/genres";
 const axiosInstance = axios.create({});
 axiosInstance.interceptors.request.use(
   (config) => {

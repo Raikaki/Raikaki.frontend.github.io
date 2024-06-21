@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import '../css/ResetPassword.css';
+import '../../css/ResetPassword.css';
 
 function ResetPassword() {
     const { token } = useParams();
@@ -17,7 +17,7 @@ function ResetPassword() {
             return;
         }
 
-        axios.post('http://localhost:8080/auth/reset-password', null, {
+        axios.post('https://backend-w87n.onrender.com/auth/reset-password', null, {
             params: {
                 token,
                 newPassword

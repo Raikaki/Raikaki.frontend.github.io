@@ -7,30 +7,31 @@ import {
 } from "react-router-dom";
 import "../App.css";
 import "../css/bootstrap.min.css";
-import "react-multi-carousel/lib/styles.css";
+import "../css/owl.carousel.min.css";
 import "../css/ds/style.css";
 import "../css/home.css";
-import MovieDetail from "../page/MovieDetail";
-import ProductItem from "../page/ProductItem";
-import AnimePage from "../component/Index";
-import { CategoriesPage } from "../page/Categorie";
-import { HeaderPage } from "../component/Header";
-import ServicePack from "../component/ServicePack";
-import MovieWatching from "../page/MovieWatching";
-import LoginGoogle from "../component/LoginGoogleSuccess";
-import LoginFacebook from "../component/LoginFacebookSuccess";
-import PayPal from "../component/PayPal";
-import ExecutePaymentComponent from "../component/ExecutePaymentComponent";
-import Follow from "../page/Follow";
-import History from "../component/history-packed";
-import Viewed from "../page/HistoryViews";
-import Profile from "../page/ProfilePage";
-import ChangePassword from "../page/Changepassword";
-import AboutUs from "../component/about_us";
-import AboutPayment from "../component/payment_information";
-import ForgotPassword from "../component/forgotPassword";
-import ResetPassword from "../component/resetPassword";
-import { NotAuthorized } from "../component/NotAuthorized";
+import MovieDetail from "./page/MovieDetail";
+import ProductItem from "./page/ProductItem";
+import AnimePage from "./component/Index";
+import { CategoriesPage } from "./page/Categorie";
+import { HeaderPage } from "./component/Header";
+import Footer from "./page/Footer.js"
+import ServicePack from "./component/ServicePack";
+import MovieWatching from "./page/MovieWatching";
+import LoginGoogle from "./component/LoginGoogleSuccess";
+import LoginFacebook from "./component/LoginFacebookSuccess";
+import PayPal from "./component/PayPal";
+import ExecutePaymentComponent from "./component/ExecutePaymentComponent";
+import Follow from "./page/Follow";
+import History from "./component/history-packed";
+import Viewed from "./page/HistoryViews";
+import Profile from "./page/ProfilePage";
+import ChangePassword from "./page/Changepassword";
+import AboutUs from "./component/about_us";
+import AboutPayment from "./component/payment_information";
+import ForgotPassword from "./component/forgotPassword";
+import ResetPassword from "./component/resetPassword";
+import { NotAuthorized } from "./component/NotAuthorized";
 function IndexApp() {
   return (
     <Router>
@@ -64,6 +65,8 @@ function IndexApp() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/changePassword" element={<ChangePassword />} />
       </Routes>
+      <Footer/>
+
     </Router>
   );
 }

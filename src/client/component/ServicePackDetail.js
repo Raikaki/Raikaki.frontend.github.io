@@ -15,7 +15,7 @@ function ServiceDetail(props) {
     }, []);
 
     const fetchServicePacks = () => {
-        fetch('http://localhost:8080/servicePack')
+        fetch('https://backend-w87n.onrender.com/servicePack')
             .then(response => response.json())
             .then(data => {
                 // Sort the data based on service_type

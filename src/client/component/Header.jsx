@@ -9,18 +9,18 @@ import {
   checkUsername,
   sendMail,
   register,
-} from "../service/AuthServices";
+} from "../../service/AuthServices";
 import { jwtDecode } from "jwt-decode";
-import iconAdmin from "../img/icon-admin.png";
+import iconAdmin from "../../img/icon-admin.png";
 import Cookies from "js-cookie";
-import logo from "../img/logo.png";
-import { getGenreList } from "../service/CategoryServices";
+import logo from "../../img/logo.png";
+import { getGenreList } from "../../service/CategoryServices";
 import { useTranslation, Trans } from "react-i18next";
 import { Dropdown, Space, Typography } from "antd";
-import { searchMovie } from "../service/MovieServices";
-import { Loading } from "../component/Loading";
+import { searchMovie } from "../../service/MovieServices";
+import { Loading } from "./Loading";
 import Swal from "sweetalert2";
-import { refreshToken } from "../service/AuthServices";
+import { refreshToken } from "../../service/AuthServices";
 export const HeaderPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
@@ -89,6 +89,7 @@ export const HeaderPage = () => {
         if (currentTime > expirationTime - 43200000) {
           try {
             refreshToken(token);
+            
           } catch (error) {}
         }
       }
@@ -123,9 +124,9 @@ export const HeaderPage = () => {
       });
   };
   const validateEmail = (email) => {
-    // return email.match(
-    //   /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    // );
+    return email.match(
+      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
   };
   const EmailVerificationDialog = ({ onClose }) => {
     const [isUploading, setIsUploading] = useState(false);
@@ -526,7 +527,7 @@ export const HeaderPage = () => {
               <div className="navbar-item s768:h-[30px] dark:s768:border-gray-700 s768:border s768:rounded-full s768:order-2">
                 <a
                   className="h-full flex gap-4 uppercase s768:normal-case items-center text-[14px]"
-                  href="#"
+                  href="src/client/component#"
                   onMouseEnter={handleMouseEnter}
                   onClick={handleMouseEnter}
                 >
@@ -623,7 +624,7 @@ export const HeaderPage = () => {
                   <Link to={"/about-us"}>
                     {" "}
                     <span className="s768:px-3 s1024:px-2 s1280:px-3 s1366:px-4 s768:text-[14px]">
-                      About us
+                    {t("header.aboutus")}
                     </span>
                   </Link>
                 </a>
@@ -761,7 +762,9 @@ export const HeaderPage = () => {
                 className="navbar-avatar w-[40px] h-[40px] rounded-full overflow-hidden"
                 id="navbar-avatar"
               >
+                {/* <img className="w-full h-full" src={Cookies.get("avatar") == undefined ? loggedUser?.avt : Cookies.get('avatar')} /> */}
                 <img className="w-full h-full" src={loggedUser?.avt} />
+
               </div>
             </div>
           )}
@@ -1011,7 +1014,7 @@ export const HeaderPage = () => {
                     <div className="navbar-form-group relative mb-3 h-8 rounded bg-orange-600/90 text-center text-white text-[14px] font-light">
                       <a
                         className="social-login"
-                        href="http://localhost:8080/oauth2/authorization/google"
+                        href="https://backend-w87n.onrender.com/oauth2/authorization/google"
                       >
                         <input
                           type="button"
@@ -1023,7 +1026,7 @@ export const HeaderPage = () => {
                     <div className="navbar-form-group relative mb-3 h-8 rounded bg-blue-600/90 text-center text-white text-[14px] font-light">
                       <a
                         className="social-login"
-                        href="http://localhost:8080/oauth2/authorization/facebook"
+                        href="https://backend-w87n.onrender.com/oauth2/authorization/facebook"
                       >
                         <input
                           type="button"
@@ -1257,6 +1260,8 @@ export const HeaderPage = () => {
                   <img
                     className="self-avatar w-full h-full rounded-full"
                     src={loggedUser.avt}
+
+                    // src={Cookies.get("avatar") == undefined ? loggedUser?.avt : Cookies.get('avatar')}
                   />
                   <div className="user-avatar-update absolute w-8 h-8 top-6 left-6 rounded-lg bg-black/50 text-white opacity-50 flex items-center text-center hidden group-hover/avatar:block">
                     <svg
@@ -1324,7 +1329,7 @@ export const HeaderPage = () => {
                         >
                           {" "}
                           <img src={iconAdmin} className="w-4 h-4 shrink-0" />
-                          Go to dashboard
+                          {t("header.Gotodashboard")}
                         </a>
                       </div>
                     )}

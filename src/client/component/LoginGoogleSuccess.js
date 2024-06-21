@@ -17,12 +17,11 @@ const Login = () => {
     const [regiserUser, setRegisterUser] = useState(null)
     useEffect(() => {
 
-        console.log('Login component rendered'); // Thêm dòng này để kiểm tra
+        console.log('Login component rendered');
         // Rest of your code...
         try {
             console.log('handleAfterLogin called');
-            // Gọi một phương thức khác sau khi đăng nhập thành công
-            axios.get('http://localhost:8080/login/google', {withCredentials: true})
+            axios.get('https://backend-w87n.onrender.com/login/google', {withCredentials: true})
                 .then((response) => {
                     console.log('Response after login:', response.data);
                     const token = response.data.accessToken;
@@ -46,7 +45,7 @@ const Login = () => {
                             confirmButtonText: 'OK'
                         }).then((result) => {
                             if (result.isConfirmed) {
-                                window.location.href = "http://localhost:3000/"
+                                window.location.href = "https://animewebnew.netlify.app"
                             }
                         });
                     } else {

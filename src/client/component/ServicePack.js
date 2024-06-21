@@ -29,7 +29,7 @@ function ServicePack() {
                 confirmButtonText: 'OK'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = 'http://localhost:3000';
+                    window.location.href = 'https://animewebnew.netlify.app';
                 }
             });
         }

@@ -2,7 +2,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { refreshToken } from "./AuthServices";
 import { jwtDecode } from "jwt-decode";
-const SERIE_API_ADMIN_URL = "http://localhost:8080/admin/series";
+const SERIE_API_ADMIN_URL = "https://backend-w87n.onrender.com/admin/series";
 
 const axiosInstance = axios.create({});
 axiosInstance.interceptors.request.use(

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { editMovie, getMovieById } from "../../service/MovieServices";
 import Swal from "sweetalert2";
-import { Loading } from "../../component/Loading";
+import { Loading } from "../../client/component/Loading";
 import DataTable from "react-data-table-component";
 import { getGenreList } from "../../service/CategoryServices";
 import { getAllSerie } from "../../service/SerieServices";

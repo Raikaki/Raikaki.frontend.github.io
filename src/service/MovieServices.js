@@ -2,8 +2,8 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
 import { refreshToken } from "./AuthServices";
-const MOVIE_API_BASE_URL = "http://localhost:8080/movie";
-const MOVIE_API_ADMIN_URL = "http://localhost:8080/admin/movies";
+const MOVIE_API_BASE_URL = "https://backend-w87n.onrender.com/movie";
+const MOVIE_API_ADMIN_URL = "https://backend-w87n.onrender.com/admin/movies";
 
 const axiosInstance = axios.create({});
 axiosInstance.interceptors.request.use(
